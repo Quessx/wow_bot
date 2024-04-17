@@ -2,6 +2,6 @@
 ## Version: 1.0.0
 ## Title: Hello World
 ## Notes: My first addon
-## Author: Quess
+## Author: Quessx
 
 HelloWorld.lua

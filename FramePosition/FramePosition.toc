@@ -1,0 +1,12 @@
+## Interface: 30300
+## Version: 1.0.0
+## Title: FramePosition
+## Notes: Frame
+## Author: Quessx
+## SavedVariables: FramePositionDB
+
+#@no-lib-strip@
+index.xml
+#@end-no-lib-strip@
+
+FramePosition.lua

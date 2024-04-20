@@ -1,26 +1,19 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
-&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;..\FrameXML\UI.xsd">
-    <Script file="libs\LibStub-1.0\LibStub.lua" />
-    <Script file="libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua" />
-    <Include file="libs\CallbackHandler-1.0\CallbackHandler-1.0.xml" />
-    <Include file="libs\Ace3\AceAddon-3.0\AceAddon-3.0.xml" />
-    <Include file="libs\Ace3\AceEvent-3.0\AceEvent-3.0.xml" />
-    <Include file="libs\Ace3\AceDB-3.0\AceDB-3.0.xml" />
-    <Include file="libs\Ace3\AceLocale-3.0\AceLocale-3.0.xml" />
-    <Include file="libs\LibSharedMedia-3.0\lib.xml" />
-    <Script file="libs\LibDualSpec-1.0\LibDualSpec-1.0.lua" />
-    <Script file="libs\LibDataBroker-1.1\LibDataBroker-1.1.lua" />
-    <Frame name="DragFrame1" enableMouse="true" movable="true" parent="UIParent">
-        <Layers>
-            <Layer level="ARTWORK">
-                <Texture setAllPoints="true">
-                    <Color r="1.0" g="0.5" b="0.0" a="0.5" />
-                </Texture>
-            </Layer>
-        </Layers>
-        <Size x="64" y="64" />
-        <Anchors>
-            <Anchor point="TOPLEFT" x="25" y="-120" relativeTo="UIParent" />
-        </Anchors>
-    </Frame>
+&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;..\FrameXML\UI.xsd">
+<Scripts>
+    <OnLoad>
+        SetParams_OnLoad()
+    </OnLoad>
+</Scripts>
+<Script file="libs\LibStub-1.0\LibStub.lua"/>
+<Script file="libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua"/>
+<Include file="libs\CallbackHandler-1.0\CallbackHandler-1.0.xml"/>
+<Include file="libs\Ace3\AceAddon-3.0\AceAddon-3.0.xml"/>
+<Include file="libs\Ace3\AceEvent-3.0\AceEvent-3.0.xml"/>
+<Include file="libs\Ace3\AceDB-3.0\AceDB-3.0.xml"/>
+<Include file="libs\Ace3\AceLocale-3.0\AceLocale-3.0.xml"/>
+<Include file="libs\LibSharedMedia-3.0\lib.xml"/>
+<Script file="libs\LibDualSpec-1.0\LibDualSpec-1.0.lua"/>
+<Script file="libs\LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
+
 </Ui>

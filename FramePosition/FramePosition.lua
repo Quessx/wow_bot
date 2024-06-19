@@ -85,6 +85,27 @@ local function setFacingPosition(facing, coord)
   end
 end
 
+-- внеднить в setFacingPosition
+-- ищет направление в которое нужно дивагаться персонажу чтобы попасть на нужные координаты
+local function setNearVector(xPlayer, yPlayer, runCoordX, runCoordY)
+  player = {xPlayer, yPlayer}
+  toMove = {runCoordX, runCoordY}
+  startVector = {player[1], player[2] - 1}
+  vect1 = {startVector[1] - player[1], startVector[2] - player[2]}
+  vect2 = {toMove[1] - player[1], toMove[2] - player[2]}
+  cosA = (vect1[1] * vect2[1] + vect1[2] * vect2[2]) / (
+      (math.sqrt((vect1[1] * vect1[1] + vect1[2] * vect1[2]))) * (math.sqrt(vect2[1] * vect2[1] + vect2[2] * vect2[2]))
+  )
+  angle = math.degrees(math.acos(cosA))
+  if toMove[1] > player[1] then
+      angle = 360 - angle
+  end
+  piAngle = angle * math.pi / 180
+  distance = math.sqrt(vect2[1] * vect2[1] + vect2[2] * vect2[2])
+
+  print(piAngle, distance)
+end
+
 local function shwcrd(x)
   return math.floor(x * 100)
 end
@@ -129,7 +150,7 @@ local unit = 'playertarget'
 local posCurrentX, posCurrentY = GetPlayerMapPosition("player")
 local currentCoordIndex = 0
 -- set coordinates for farming mobs
-local runningCoordinates = {[0] = {x = 41, y = 56}, [1] = {x = 38, y = 57}, [2] = {x = 37, y = 54}, [3] = {x = 39, y = 53}};
+local runningCoordinates = {[0] = {[0] = {x = 41, y = 56}, [1] = {x = 42, y = 57}}, [1] = {x = 38, y = 57}, [2] = {x = 37, y = 54}, [3] = {x = 39, y = 53}};
 
 function FramePosition:OnInitialize()
   -- set near position coord
@@ -171,23 +192,19 @@ UIParent:SetScript("OnUpdate", function(self)
   end
 
   print(facing)
-  if isTarget == 0 and tonumber(runningCoordinates[currentCoordIndex].y) ~= shwcrd(posY) and tonumber(runningCoordinates[currentCoordIndex].y) <= shwcrd(posY) then
+  if tonumber(runningCoordinates[currentCoordIndex].y) ~= shwcrd(posY) and tonumber(runningCoordinates[currentCoordIndex].y) <= shwcrd(posY) then
     setFacingPosition(facing, yFacingCoordUp)
-  elseif isTarget == 0 and tonumber(runningCoordinates[currentCoordIndex].y) ~= shwcrd(posY) and tonumber(runningCoordinates[currentCoordIndex].y) >= shwcrd(posY) then
+  elseif tonumber(runningCoordinates[currentCoordIndex].y) ~= shwcrd(posY) and tonumber(runningCoordinates[currentCoordIndex].y) >= shwcrd(posY) then
     setFacingPosition(facing, yFacingCoordDown)
-  elseif isTarget == 0 and tonumber(runningCoordinates[currentCoordIndex].x) ~= shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].x) <= shwcrd(posX) then
+  elseif tonumber(runningCoordinates[currentCoordIndex].x) ~= shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].x) <= shwcrd(posX) then
     setFacingPosition(facing, xFacingCoordLeft)
-  elseif isTarget == 0 and tonumber(runningCoordinates[currentCoordIndex].x) ~= shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].x) >= shwcrd(posX) then
+  elseif tonumber(runningCoordinates[currentCoordIndex].x) ~= shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].x) >= shwcrd(posX) then
     setFacingPosition(facing, xFacingCoordRight)
-  elseif isTarget == 0 and tonumber(runningCoordinates[currentCoordIndex].x) == shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].y) == shwcrd(posY) then
+  elseif tonumber(runningCoordinates[currentCoordIndex].x) == shwcrd(posX) and tonumber(runningCoordinates[currentCoordIndex].y) == shwcrd(posY) then
     if (runningCoordinates[currentCoordIndex + 1]) then
       currentCoordIndex = currentCoordIndex + 1
     else
       currentCoordIndex = 0
     end
-  elseif isTarget == 1 then
-    up.texture:SetTexture(1, 0, 0);
-    left.texture:SetTexture(1, 0, 0);
-    right.texture:SetTexture(1, 0, 0)
   end
 end)
